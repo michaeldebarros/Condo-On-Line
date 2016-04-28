@@ -1,0 +1,158 @@
+<% include ../views/partials/head.ejs %>
+<% include ../views/partials/header.ejs %>
+
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+
+            <!-- template code -->
+        <% if (message.success) { %>
+           <div class="alert alert-success" role="alert">
+             <%=message.success%>
+          </div>
+        <% } %>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <% if(currentUser) { %>
+                    <h4 class="page-head-line"><%=currentUser.name%></h4>
+                    <% }%>
+                </div>
+
+            </div>
+            
+          <div class="row">
+              <div class="col-md-12">
+                <div class="notice-board">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           RECADOS  (últimos 5 recados)
+                          </div>
+                            <div class="panel-body">
+                                <ul >    
+                                <% posts.forEach(function(post){ %>  
+                                     <li class="textLimit">
+                                     <b> <%=post.postedByName%></b> : <%=post.content%><br>
+                                     <b> Postado em:</b> <%=moment(post.date).format('DD/MM/YYYY')%>
+                                     </li>
+                                 <% }); %>   
+                                </ul>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="/recados" class="btn btn-default btn-block">Ver Todos os Recados</a>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="/recados/new" class="btn btn-default btn-block">Escrever um Recado</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+      <div class="row">
+       <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                           FORNECEDORES (últimos 5 cadastrados)
+                </div>
+                    <div class="panel-body">
+
+                          <div class="table-responsive">
+                                <table class="table bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Profissão</th>
+                                            <th>Telefone</th>
+                                            <th>Postado por</th>
+                                            <th>Apartamento</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                  <% contractors.forEach( function(contractor){ %>
+                                        <tr>
+                                            <td><%= contractor.name %></td>
+                                            <td style = "text-align: center"><%= contractor.profession %></td>
+                                            <td><a href="tel: <%= contractor.phone %>"><%= contractor.phone %></a></td>
+                                            <td><%= contractor.postedByName %></td>
+                                            <td><%= contractor.postedByApartment %></td>
+                                        </tr>
+                                      <% }) %>
+                                    </tbody>
+                                </table>
+                              <div class="panel-footer">
+                                <a href="/fornecedores" class="btn btn-default btn-block">Ver Todos os Fornecedores</a>
+                            </div>
+                             <div class="panel-footer">
+                                <a href="/fornecedores/new" class="btn btn-default btn-block">Cadastrar Fornecedor</a>
+                            </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="alert alert-danger">
+                        O acesso ao Condo é exclusivo aos moradores do condomínio, sendo proibída a seção de senha a terceiros. 
+                    </div>
+                    
+                      </div>
+
+
+                   <div class="col-md-6">
+                    
+                    <!-- <div class="Compose-Message"> -->               
+                       <div class="panel panel-default">
+                         <div class="panel-heading">
+                        SALÃO DE FESTAS (últimos 5 agendamentos) 
+                         </div>
+                        <div class="panel-body">
+                        
+                          <div class="table-responsive">
+                                <table class="table">
+                                   <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Período</th>
+                                            <th>Limpeza</th>
+                                            <th>Postado por</th>
+                                            <th>Apartamento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                  <% parties.forEach( function(party){ %>
+                                        <tr>
+                                            <td><%=moment(party.date).format('dddd, DD/MM/YYYY')%></td>
+                                            <td><%= party.period %></td>
+                                            <td><%= party.clean %></td>
+                                            <td><%= party.postedByName %></td>
+                                            <td><%= party.postedByApartment %></td>
+                                        </tr>
+                                      <% }) %>
+                                    </tbody>  
+
+
+
+
+
+                                </table>
+                                <div class="panel-footer">
+                                <a href="/salao" class="btn btn-default btn-block">Ver Todos os Agendamentos</a>
+                            </div>
+                             <div class="panel-footer">
+                                <a href="/salao/new" class="btn btn-default btn-block">Agendar Salão de Festas</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                 </div>       
+
+                
+         
+   
+    <!-- CONTENT-WRAPPER SECTION END-->
+   
+
+ <% include ../views/partials/footer.ejs %>
+

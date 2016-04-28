@@ -1,0 +1,49 @@
+ <% include ../views/partials/head.ejs %>
+ <% include ../views/partials/header.ejs %>
+
+
+ 
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+
+
+          <!-- template code -->
+        <% if (message.success) { %>
+           <div class="alert alert-success" role="alert">
+             <%=message.success%>
+          </div>
+        <% } %>
+
+        <div>
+          <a href="/recados/new" class="btn btn-default btn-block">Escrever um Recado</a>
+        </div>
+      </br>
+
+
+            <% posts.forEach( function(post){ %>                               
+              <div class="col-md-12 col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                         <p> Por: <%= post.postedByName %> (apt: <%= post.postedByApartment %>) em <%=moment(post.date).format('DD/MM/YYYY')%></p>   
+                        </div>
+                        <div class="panel-body">
+                            <p><%= post.content %></p>
+                           <% if(currentUser.id === post.postedById) { %>
+                           <form method="POST" action= "/recados" >
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="postId" value= <%= post.id %>>
+                           <button type="submit" class="btn btn-default">Deletar</button>
+                          </form>
+                        <% } %>
+                      </div>
+                    </div>
+                </div>
+          <% }) %>
+      </div>
+
+ <!-- CONTENT-WRAPPER SECTION END-->
+  
+
+ <% include ../views/partials/footer.ejs %>
+

@@ -1,0 +1,118 @@
+<% include ../views/partials/head.ejs %>
+<% include ../views/partials/header.ejs %>
+
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+
+
+          <!-- template code -->
+        <% if (message.success) { %>
+           <div class="alert alert-success" role="alert">
+             <%=message.success%>
+          </div>
+        <% } %>
+
+                                        
+                           <div class="col-md-12" id="view-table-panels">
+                                 <div class="panel panel-default">
+                                     <div class="panel-heading">
+                                         SALÃO DE FESTAS <a href="/salao/new" class="btn btn-default btn-block">Agendar Salão de Festas</a>
+                                      </div>
+                                        <div class="panel-body">
+                                    <% parties.forEach( function(party){ %>
+                                      <div class="panel panel-default, col-md-6">
+                                       <div class="panel-body, col-md-6">
+                                        <tr>
+                                            <th><b>Data:</b>   </th> <td><%=moment(party.date).format('dddd, DD/MM/YYYY')%></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Período:</b>    </th><td><%= party.period %></td>
+                                         </tr></br>
+                                         <tr>
+                                            <th><b>Limpeza:</b>    </th> <td><%= party.clean %></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Postado por:</b>    </th> <td><%= party.postedByName %></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Apartamento:</b>    </th><td><%= party.postedByApartment %></td>
+                                         </tr></br>
+                                         <% if(currentUser.id === party.postedById) { %>
+                                            <td>
+                                            <form method="POST" action= "/salao" >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="partyId" value= <%= party.id %>>
+                                            <button type="submit" class="btn btn-default">Deletar</button>
+                                            </form>
+                                            </td>
+                                          <% } %>
+                                            </div>
+                                         </div>   
+                                        <% }) %> 
+                               </div> 
+                             </div>
+                            </div>
+
+
+
+
+
+                   <div class="col-md-12" id="view-table-table">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <p style="text-aligne:center">  SALÃO DE FESTAS <a href="/salao/new" class="btn btn-default btn-block">Agendar Salão de Festas</a></p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Período</th>
+                                            <th>Limpeza</th>
+                                            <th>Postado por</th>
+                                            <th>Apartamento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                  <% parties.forEach( function(party){ %>
+                                        <tr>
+                                            <td><%=moment(party.date).format('dddd, DD/MM/YYYY')%></td>
+                                            <td><%= party.period %></td>
+                                            <td><%= party.clean %></td>
+                                            <td><%= party.postedByName %></td>
+                                            <td><%= party.postedByApartment %></td>
+                                            <% if(currentUser.id === party.postedById) { %>
+                                            <td>
+                                            <form method="POST" action= "/salao">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="partyId" value= <%=party.id%>>
+                                            <button type="submit" class="btn btn-default">Deletar</button>
+                                            </form>
+                                            </td>
+                                          <% } %>
+                                        </tr>
+                                      <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+
+
+
+                           
+                           
+                    
+
+
+
+
+ <!-- CONTENT-WRAPPER SECTION END-->
+   
+
+ <% include ../views/partials/footer.ejs %>

@@ -1,0 +1,51 @@
+t<% include ../views/partials/head.ejs %>
+<% include ../views/partials/header.ejs %>
+
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+            
+               <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <%= currentUser.name %>, comparilhe com os demais moradores os fornecedores de produtos e serviços que você confia, não esqueça de deixar um comentário sobre ele(a), como :"muito prestativo", "atendimento rápido", etc.
+                        </div>
+                        <div class="panel-body">
+                       <form method="POST" action= "/fornecedores/new">
+                           <div class="form-group">
+                             <label for="nome">Nome</label>
+                             <input type="text" class="form-control" id="nome" placeholder="nome" name="name" required>
+                           </div> 
+                           <div class="form-group">
+                             <label for="apartamento">Telefone</label>
+                             <input type="tel" input type = "tel" size ="10" class="form-control" id="phone"  name="phone">
+                           </div>
+                           <div class="form-group">
+                               <label for="nome">Profissão</label>
+                             <select name="profession">
+                               <option value="eletrica">Elétrica</option> 
+                               <option value="hidraulica">Hidráulica</option>
+                               <option value="obras">Obras e Reformas (pedreiros)</option>
+                               <option value="pintura">Pintura</option>
+                               <option value="marcenaria">Marcenaria</option>
+                               <option value="limpeza">Limpeza e Faxina</option>
+                               <option value="eletrodomesticos">Eletrodomesticos</option>
+                               <option value="comida">Comida</option>
+                               <option value="saude">Saúde (fisioterapia e massagem)</option>
+                               <option value="personalTrainer">Personal Trainer</option>
+                               <option value="outros">outros</option>
+                            </select>
+                           </div>
+                             <label for="nome">Comentário</label>
+                             <textarea class="form-control" rows="2" placeholder="Comentário" name="comment"></textarea>
+                             <hr />
+                             <button type="submit" class="btn btn-default">Postar</button>
+                             <hr />
+                          </form>
+
+
+ <!-- CONTENT-WRAPPER SECTION END-->
+   
+
+ <% include ../views/partials/footer.ejs %>

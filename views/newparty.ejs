@@ -1,0 +1,45 @@
+ 
+ <% include ../views/partials/head.ejs %>
+ <% include ../views/partials/header.ejs %>
+
+ <div class="content-wrapper">
+        <div class="container">
+            
+               <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <%= currentUser.name %>, este espaço é didicado à reserva do Salão de Festas.
+                        </div>
+                        <div class="panel-body">
+                       <form method="POST" action= "/salao/new">
+                           <div class="form-group">
+                             <label for="data">Data</label>
+                             <input type="date" class="form-control" id="date" name="date">
+                           </div> 
+                           <div class="form-group">
+                               <label for="period">Período</label>
+                             <select name="period">
+                               <option value="dia todo">Dia todo</option> 
+                               <option value="manhâ até o meio dia">Manhã até meio dia</option>
+                               <option value="manhã e tarde">Manhã e tarde</option>
+                               <option value="noite">Noite (a partir das 18 horas)</option>
+                            </select>
+                           </div>
+                           <div class="form-group">
+                               <label for="period">Limpeza</label>
+                             <select name="clean">
+                               <option value="própria">Própria</option> 
+                               <option value="Senhorita Limpeza">Senhorita Limpeza</option>
+                               <option value="outra empresa">outra empresa</option>
+                            </select>
+                           </div>
+                             <hr />
+                             <button type="submit" class="btn btn-default">Reservar</button>
+                             <hr />
+                          </form>
+                
+
+
+
+ <% include ../views/partials/footer.ejs %>

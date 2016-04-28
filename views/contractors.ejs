@@ -1,0 +1,121 @@
+<% include ../views/partials/head.ejs %>
+<% include ../views/partials/header.ejs %>
+
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+
+
+          <!-- template code -->
+        <% if (message.success) { %>
+           <div class="alert alert-success" role="alert">
+             <%=message.success%>
+          </div>
+        <% } %>
+
+
+                   <div class="col-md-12" id="view-table-panels">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <p style="text-aligne:center"> FORNECEDORES <a href="/fornecedores/new" class="btn btn-default btn-block">Cadastrar Forncecedor</a></p>
+                        </div>
+                        <div class="panel-body">
+                            
+                             
+                                
+                                    <% contractors.forEach( function(contractor){ %>
+                                    <div class="panel panel-default, col-md-6">
+                                      <div class="panel-body, col-md-6">
+                                        <tr>
+                                            <th><b>Nome:</b>   </th> <td><%= contractor.name %></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Profissão:</b>    </th><td><%= contractor.profession %></td>
+                                         </tr></br>
+                                         <tr>
+                                            <th><b>Telefone:</b>    </th> <td><a href="tel: <%= contractor.phone %>"><%= contractor.phone %></a></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Postado por:</b>    </th> <td><%= contractor.postedByName %></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Apartamento:</b>    </th><td><%= contractor.postedByApartment %></td>
+                                         </tr></br>
+                                         <tr>   
+                                            <th><b>Comentário:</b>      </th> <td>"<%= contractor.comment %>"</td>
+                                        </tr></br>
+                                        <% if(currentUser.id === contractor.postedById) { %>
+                                            <td>
+                                            <form method="POST" action= "/fornecedores" >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="contractorId" value= <%= contractor.id %>>
+                                            <button type="submit" class="btn btn-default">Deletar</button>
+                                            </form>
+                                            </td>
+                                          <% } %>
+                                            </div>
+                                         </div>   
+                                        <% }) %> 
+                               </div> 
+                             </div>
+                            </div>
+
+
+                         <div class="col-md-12" id="view-table-table">
+                            <div class="panel panel-default">
+                               <div class="panel-heading">
+                              FORNECEDORS <a href="/fornecedores/new" class="btn btn-default btn-block">Cadastrar Forncecedor</a>
+                              </div>
+                            <div class="panel-body">
+                               <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Profissão</th>
+                                            <th>Telefone</th>
+                                            <th>Postado por</th>
+                                            <th>Apartamento</th>
+                                            <th>Comentário</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                  <% contractors.forEach( function(contractor){ %>
+                                        <tr>
+                                            <td><%= contractor.name %></td>
+                                            <td style = "text-align: center"><%= contractor.profession %></td>
+                                            <td><a href="tel: <%= contractor.phone %>"><%= contractor.phone %></a></td>
+                                            <td><%= contractor.postedByName %></td>
+                                            <td><%= contractor.postedByApartment %></td>
+                                            <td>"<%= contractor.comment %>"</td>
+                                            <% if(currentUser.id === contractor.postedById) { %>
+                                            <td>
+                                            <form method="POST" action= "/fornecedores" >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="contractorId" value= <%= contractor.id %>>
+                                            <button type="submit" class="btn btn-default">Deletar</button>
+                                            </form>
+                                            </td>
+                                          <% } %>
+                                        </tr>
+                                      <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+
+
+                           
+                           
+                    
+
+
+
+
+ <!-- CONTENT-WRAPPER SECTION END-->
+   
+
+ <% include ../views/partials/footer.ejs %>
