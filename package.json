@@ -1,0 +1,28 @@
+{
+  "name": "Condo",
+  "version": "1.0.0",
+  "description": "aplication for  building",
+  "main": "app.js",
+  "author": "Michael de Barros",
+  "license": "ISC",
+  "engines": {
+    "node": "ˆ4.2.1",
+    "npm": "2.14.7"
+  },
+  "dependencies": {
+    "async": "^1.5.0",
+    "bcrypt-node": "^0.1.0",
+    "body-parser": "^1.14.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^0.8.2",
+    "cookie-parser": "^1.4.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "method-override": "^2.3.5",
+    "moment": "^2.10.6",
+    "mongoose": "4.3.4",
+    "multer": "^1.1.0",
+    "passport": "^0.3.0"
+  }
+}
