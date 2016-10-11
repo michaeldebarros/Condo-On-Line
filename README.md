@@ -13,3 +13,6 @@ The first version had a file uploader using Multer.js, but that was not very use
 There is a  media querey for smaller screens in the CSS file.
 
 The template used was a Bootstrap Zontal, found here (https://graygrids.com/item/free-bootstrap-admin-template-zontal-admin/)
+
+This application was done by reading online tutorials, watching videoes, doing som Free Code Camp and other online reasorces. It is very different from realy learning a language or even a framework. After completing this simple application I decided I first needed to learn how to read code before I write.  This is why I don`t have anymore commits.
+
